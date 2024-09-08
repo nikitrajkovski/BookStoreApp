@@ -1,65 +1,61 @@
-﻿@model IEnumerable<Domain.Models.Book>
+﻿@model List<Domain.Models.Book>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>All books available</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Publisher)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container">
+    <div class="m-3">
+        <a class="btn btn-success" asp-controller="Books" asp-action="Create">Add new book</a>
+
+    </div>
+
+    @for(int i=0;i<Model.Count; i++)
+    {
+        var item = Model[i];
+        if(i % 4 == 0)
+        {
+            @:<div class="row">
+        }
+        <div class="col-3 m-3">
+
+            <div class="card" style="width: 18rem; height: 33rem">
+              <a asp-controller="Books" asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.Image" alt="Card image cap"  style="width: 100%; height: 200px; object-fit: cover;"></a>
+              <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text text-truncate-3-lines">@item.Description</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Author: @item.Author.Name</li>
+                <li class="list-group-item">Publisher: @item.Publisher.Name</li>
+                <li class="list-group-item">Price: @item.Price ден.</li>
+              </ul>
+              <div class="card-body">
+                    <a asp-controller="Books" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
+                    <a asp-controller="Books" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    <a asp-controller="Books" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-info">Add to Cart</a>
+              </div>
+            </div>
+
+        </div>
+
+        if(i % 4 == 3)
+        {
+            @:</div>
+        }
+    }
+</div>
+
+<style>
+    .text-truncate-3-lines {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; 
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+

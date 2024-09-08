@@ -23,11 +23,31 @@ namespace Repository.Implementation
 
         public IEnumerable<T> GetAll()
         {
+            if (typeof(T) == typeof(Book))
+            {
+                return entities
+                    .Include(z => ((Book)(object)z).Author)
+                    .Include(z => ((Book)(object)z).Publisher)
+                    .AsEnumerable();
+            }
             return entities.AsEnumerable();
         }
 
         public T Get(Guid? id)
         {
+            if (typeof(T) == typeof(Book))
+            {
+                return entities
+                    .Include(z => ((Book)(object)z).Author)
+                    .Include(z => ((Book)(object)z).Publisher)
+                    .SingleOrDefault(z=>z.Id==id);
+            }
+            if (typeof(T) == typeof(BookInShoppingCart))
+            {
+                return entities
+                    .Include(z => ((BookInShoppingCart)(object)z).Book)
+                    .SingleOrDefault(z => z.Id == id);
+            }
             return entities.SingleOrDefault(z => z.Id == id);
         }
         public void Insert(T entity)

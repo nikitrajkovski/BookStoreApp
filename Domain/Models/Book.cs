@@ -15,8 +15,8 @@ namespace Domain.Models
         public Author Author { get; set; }
         public Guid PublisherId { get; set; }
         public Publisher Publisher { get; set; }
-        public virtual IEnumerable<BookInOrder> BooksInOrder { get; set; }
-        public virtual ICollection<BookInShoppingCart> BookInShoppingCart {  get; set; }
+        public virtual IEnumerable<BookInOrder>? BooksInOrder { get; set; }
+        public virtual ICollection<BookInShoppingCart>? BookInShoppingCart {  get; set; }
 
     }
 }
