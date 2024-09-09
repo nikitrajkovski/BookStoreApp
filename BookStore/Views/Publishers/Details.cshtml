@@ -1,0 +1,29 @@
+﻿@model Domain.Models.Publisher
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    @if (Model.Books.Any())
+    {
+        <h4>Books:</h4>
+        <ul>
+            @foreach (var book in Model.Books)
+            {
+                <li>@book.Title</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>This publisher hasn't published any books yet.</p>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -13,15 +13,23 @@ namespace Service.Implementation
     {
 
         private readonly IRepository<Author> _authorRepository;
+        private readonly IRepository<Book> _bookRepository;
 
-        public AuthorService(IRepository<Author> authorRepository)
+        public AuthorService(IRepository<Author> authorRepository, IRepository<Book> bookRepository)
         {
             _authorRepository = authorRepository;
+            _bookRepository = bookRepository;
         }
 
         public void CreateNewAuthor(Author author)
         {
             _authorRepository.Insert(author);
+        }
+
+        public void DeleteAuthor(Guid id)
+        {
+            var author = _authorRepository.Get(id);
+            _authorRepository.Delete(author);
         }
 
         public List<Author> GetAllAuthors()
@@ -32,6 +40,11 @@ namespace Service.Implementation
         public Author GetDetailsForAuthor(Guid? id)
         {
             return _authorRepository.Get(id);
+        }
+
+        public void UpdateAuthor(Author author)
+        {
+            _authorRepository.Update(author);
         }
     }
 }

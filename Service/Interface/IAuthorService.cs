@@ -12,5 +12,7 @@ namespace Service.Interface
         List<Author> GetAllAuthors();
         Author GetDetailsForAuthor(Guid? id);
         void CreateNewAuthor(Author author);
+        void DeleteAuthor(Guid id);
+        void UpdateAuthor(Author author);
     }
 }

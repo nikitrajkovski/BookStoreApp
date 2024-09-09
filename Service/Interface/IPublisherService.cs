@@ -12,5 +12,7 @@ namespace Service.Interface
         List<Publisher> GetAllPublishers();
         Publisher GetDetailsForPublisher(Guid? id);
         void CreateNewPublisher(Publisher publisher);
+        void DeletePublisher(Guid id);
+        void UpdatePublisher(Publisher publisher);
     }
 }

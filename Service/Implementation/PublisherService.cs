@@ -24,6 +24,12 @@ namespace Service.Implementation
             _publisherRepository.Insert(publisher);
         }
 
+        public void DeletePublisher(Guid id)
+        {
+            var publisher = _publisherRepository.Get(id);
+            _publisherRepository.Delete(publisher);
+        }
+
         public List<Publisher> GetAllPublishers()
         {
             return _publisherRepository.GetAll().ToList();
@@ -32,6 +38,11 @@ namespace Service.Implementation
         public Publisher GetDetailsForPublisher(Guid? id)
         {
             return _publisherRepository.Get(id);
+        }
+
+        public void UpdatePublisher(Publisher publisher)
+        {
+            _publisherRepository.Update(publisher);
         }
     }
 }

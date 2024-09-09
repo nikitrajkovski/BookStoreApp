@@ -12,11 +12,10 @@ namespace Domain.Models
         public int Price { get; set; }
         [Required]
         public Guid AuthorId { get; set; }
-        public Author Author { get; set; }
+        public Author? Author { get; set; }
         public Guid PublisherId { get; set; }
-        public Publisher Publisher { get; set; }
+        public Publisher? Publisher { get; set; }
         public virtual IEnumerable<BookInOrder>? BooksInOrder { get; set; }
         public virtual ICollection<BookInShoppingCart>? BookInShoppingCart {  get; set; }
-
     }
 }

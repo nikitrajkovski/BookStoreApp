@@ -16,15 +16,15 @@ namespace BookStore.Controllers
     {
         private readonly IBookService _bookService;
         private readonly IShoppingCartService _shoppingCartService;
-        /*        private readonly IAuthorService _authorService;, IAuthorService authorService, IPublisherService publisherService            _authorService = authorService;
-            _publisherService = publisherService;
-                private readonly IPublisherService _publisherService;*/
+        private readonly IAuthorService _authorService;
+        private readonly IPublisherService _publisherService;
 
-        public BooksController(IBookService bookService, IShoppingCartService shoppingCartService)
+        public BooksController(IBookService bookService, IShoppingCartService shoppingCartService, IAuthorService authorService, IPublisherService publisherService)
         {
             _bookService = bookService;
             _shoppingCartService = shoppingCartService;
-
+            _authorService = authorService;
+            _publisherService = publisherService;
         }
 
         // GET: Books
@@ -35,12 +35,14 @@ namespace BookStore.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.AuthorId = new SelectList(_authorService.GetAllAuthors(), "Id", "Name");
+            ViewBag.PublisherId = new SelectList(_publisherService.GetAllPublishers(), "Id", "Name");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id, Title, Description, Image, Price, Author, Publisher")] Book book)
+        public IActionResult Create([Bind("Id, Title, Description, Image, Price, AuthorId, PublisherId")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -77,12 +79,14 @@ namespace BookStore.Controllers
             {
                 return NotFound();
             }
+            ViewBag.AuthorId = new SelectList(_authorService.GetAllAuthors(), "Id", "Name");
+            ViewBag.PublisherId = new SelectList(_publisherService.GetAllPublishers(), "Id", "Name");
             return View(book);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Guid id, [Bind("Id, Title, Description, Image, Price, Author, Publisher")] Book book)
+        public IActionResult Edit(Guid id, [Bind("Id, Title, Description, Image, Price, AuthorId, PublisherId")] Book book)
         {
             if (id != book.Id)
             {

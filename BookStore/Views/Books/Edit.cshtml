@@ -33,14 +33,14 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Author.Name" class="control-label">Author Name</label>
-                <input asp-for="Author.Name" class="form-control" placeholder="Enter author name" />
-                <span asp-validation-for="Author.Name" class="text-danger"></span>
+                <label asp-for="AuthorId" class="control-label"></label>
+                <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Publisher.Name" class="control-label">Publisher Name</label>
-                <input asp-for="Publisher.Name" class="form-control" placeholder="Enter publisher name" />
-                <span asp-validation-for="Publisher.Name" class="text-danger"></span>
+                <label asp-for="PublisherId" class="control-label"></label>
+                <select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">

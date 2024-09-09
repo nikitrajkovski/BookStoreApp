@@ -14,5 +14,8 @@ namespace Service.Interface
         void CreateNewBook(Book book);
         void DeleteBook(Guid id);
         void UpdateBook(Book book);
+        List<Book> getAllAuthorBooks(Guid? id);
+        List<Book> getAllPublisherBooks(Guid? id);
+
     }
 }
