@@ -4,9 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Your Shopping Cart</h1>
+<h1 style="color: ghostwhite">Your Shopping Cart</h1>
 
-<table class="table">
+<table class="table table-light table-striped">
     <thead>
         <tr>
             <th>
@@ -40,9 +40,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Quantity)
                 </td>
-                <td>
-                    |
-                    <a asp-action="DeleteFromShoppingCart" asp-controller="ShoppingCarts" asp-route-id="@item.Book.Id">Delete</a>
+                <td>               
+                    <a asp-action="DeleteFromShoppingCart" asp-controller="ShoppingCarts" asp-route-id="@item.Book.Id" class="btn btn-outline-danger">Delete</a>
                 </td>
             </tr>
         }

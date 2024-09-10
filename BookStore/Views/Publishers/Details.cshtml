@@ -4,13 +4,13 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 style ="color: ghostwhite">Details</h1>
 
 <div>
     <hr />
     @if (Model.Books.Any())
     {
-        <h4>Books:</h4>
+        <h4 style="color: ghostwhite">Books:</h4>
         <ul>
             @foreach (var book in Model.Books)
             {
@@ -24,6 +24,6 @@
     }
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-dark">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
