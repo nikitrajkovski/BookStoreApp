@@ -71,7 +71,7 @@ namespace AdminApplication.Controllers
             var total = 0;
             foreach (var item in result.BooksInOrder)
             {
-                sb.AppendLine("Product " + item.Book.Title + " has quantity " + item.Quantity + " with price " + item.Book.Price);
+                sb.AppendLine("Book " + item.Book.Title + " has quantity " + item.Quantity + " with price " + item.Book.Price);
                 total += (item.Quantity * item.Book.Price);
             }
             document.Content.Replace("{{BookList}}", sb.ToString());
@@ -108,7 +108,7 @@ namespace AdminApplication.Controllers
                     var total = 0;
                     for (int j = 0; j < item.BooksInOrder.Count(); j++)
                     {
-                        worksheet.Cell(1, 4 + j).Value = "Product - " + (j + 1);
+                        worksheet.Cell(1, 4 + j).Value = "Book - " + (j + 1);
                         worksheet.Cell(i + 2, 4 + j).Value = item.BooksInOrder.ElementAt(j).Book.Title;
                         total += (item.BooksInOrder.ElementAt(j).Quantity * item.BooksInOrder.ElementAt(j).Book.Price);
                     }
