@@ -17,27 +17,30 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color: #003049">
             <div class="container-fluid">
-                <a class="navbar-brand" style="color: #fdf0d5" asp-area=" " asp-controller="Books" asp-action="Index">Book Store App</a>
+                <a class="navbar-brand" style="color: #fdf0d5" asp-area=" " asp-controller="Books" asp-action="Index">Obozhavam Knigi</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Books" asp-action="Index">Books</a>
-                        </li>
+                        <a asp-controller="Books" asp-action="Index">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4927/4927923.png" alt="Book image" style="width:70px; height:50px; padding-left:30px" />
+                        </a>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link " asp-area="" asp-controller="ShoppingCarts" asp-action="Index">Shopping Cart</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-area="" asp-controller="Authors" asp-action="Index">Authors</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-area="" asp-controller="Publishers" asp-action="Index">Publishers</a>
-                            </li>
+                            <a asp-controller="Authors" asp-action="Index">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1948/1948164.png" alt="Author image" style="width:70px; height:50px; padding-left:30px" />
+                            </a>
+                            <a asp-controller="Publishers" asp-action="Index">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1661/1661048.png" alt="Publisher image" style="width:70px; height:50px; padding-left:30px" />
+                            </a>
+                            <a asp-controller="ShoppingCarts" asp-action="Index">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3145/3145827.png" alt="ShoppingCart image" style="width:70px; height:50px; padding-left:30px" />
+                            </a>
+                            <a asp-controller="Partner" asp-action="Index">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1322/1322195.png" alt="Partners image" style="width:70px; height:50px; padding-left:30px" />
+                            </a>
                         }
                     </ul>
                     <partial name="_LoginPartial" />

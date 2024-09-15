@@ -3,57 +3,63 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BookImage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Publisher)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@{
+    var books = Model.ToList();
 }
-    </tbody>
-</table>
+
+<h1 style="color: ghostwhite; text-align:center">Our Partner Store</h1>
+
+<div class="container">
+
+    @for (int i = 0; i < books.Count; i++)
+    {
+        var item = books[i];
+        if (i % 3 == 0)
+        {
+            @:<div class="row justify-content-center">
+        }
+
+        <div class="col-3 m-3">
+
+            <div class="card" style="width: 18rem; height: 33rem; background:#fdf0d5">
+                <a asp-controller="Books" asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.BookImage" alt="Card image cap" style="width: 100%; height: 200px; object-fit: cover;"></a>
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background: #fdf0d5">Rating: @item.Rating</li>
+                    <li class="list-group-item" style="background: #fdf0d5">Publisher: @item.Publisher.Name</li>
+                    <li class="list-group-item" style="background: #fdf0d5">Price: @item.Price ден.</li>
+                </ul>
+                
+                 <div class="card-body d-flex justify-content-center">
+                        <img src="https://t4.ftcdn.net/jpg/02/11/07/81/360_F_211078110_mttxEdu3gsSbMKajsy98E4M4E5RUCiuo.jpg" style="width:120px; height:80px;"/>
+                    </div>
+               @*  @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="card-body">
+                        <a asp-controller="Books" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Edit</a>
+                        <a asp-controller="Books" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+                        <a asp-controller="Books" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-outline-info">Add to Cart</a>
+                    </div>
+                } *@
+            </div>
+
+        </div>
+
+        if (i % 4 == 3)
+        {
+            @:</div>
+        }
+    }
+</div>
+
+<style>
+    .text-truncate-3-lines {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; 
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>

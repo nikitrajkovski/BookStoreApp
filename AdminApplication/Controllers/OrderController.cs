@@ -71,7 +71,7 @@ namespace AdminApplication.Controllers
             var total = 0;
             foreach (var item in result.BooksInOrder)
             {
-                sb.AppendLine("Book " + item.Book.Title + " has quantity " + item.Quantity + " with price " + item.Book.Price);
+                sb.AppendLine("Book " + item.Book.Title + " has quantity " + item.Quantity + " with price " + item.Book.Price+" ден. ");
                 total += (item.Quantity * item.Book.Price);
             }
             document.Content.Replace("{{BookList}}", sb.ToString());
