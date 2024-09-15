@@ -72,7 +72,7 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-            ViewBag.Publishers = publisherService.GetAllPublishers();
+            ViewBag.PublisherId = new SelectList(publisherService.GetAllPublishers(), "Id", "Name");
             return View(book);
         }
 
