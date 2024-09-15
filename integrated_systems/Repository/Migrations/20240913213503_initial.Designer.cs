@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240909154838_initial")]
+    [Migration("20240913213503_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -205,7 +205,6 @@ namespace Repository.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

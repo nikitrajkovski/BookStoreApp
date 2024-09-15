@@ -188,7 +188,7 @@ namespace Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
